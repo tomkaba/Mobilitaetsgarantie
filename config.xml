@@ -1,7 +1,7 @@
-<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.phonegap.Mobilitaetsgarantie" version="1.0.0">
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.phonegap.Mobilitaetsgarantie" version="0.0.1">
   <name>Mobilitaetsgarantie</name>
-  <description>Hello World sample application that responds to the deviceready event.</description>
-  <author href="http://phonegap.com" email="support@phonegap.com">PhoneGap Team</author>
+  <description>NPV Mobilitaetsgarantie.</description>
+  <author href="https://pl.linkedin.com/in/tomaszkabarowski" email="tomek.kabarowski@gmail.com">Tomek Kabarowski</author>
   <content src="index.html"/>
   <preference name="permissions" value="none"/>
   <preference name="orientation" value="default"/>
