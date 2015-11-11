@@ -50,7 +50,7 @@ body a {
 .logotop {
 	position:absolute;             /* position in the center of the screen */
     left:2%;
-    top:2%;
+    top:5%;
     height:50px;                   /* text area height */
     width:300px;                   /* text area width */
     text-align:left;
@@ -68,7 +68,7 @@ body a {
 
 
 .mainmenu a {
-	width:300px;
+	width:280px;
 	height:40px
 	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
 	-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
@@ -86,6 +86,7 @@ body a {
 	font-weight:normal;
 	padding:6px 24px;
 	text-decoration:none;
+	text-transform:none;
 	text-shadow:0px 1px 0px #ffffff;
 	margin-bottom:20px;
 }
