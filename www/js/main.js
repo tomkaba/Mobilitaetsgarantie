@@ -28,6 +28,26 @@ var app = {
 	},
 	registerEvents : function() {
 		var self = this;
+
+		// Check of browser supports touch events...
+		if (document.documentElement.hasOwnProperty('ontouchstart')) {
+			// ... if yes: register touch event listener to change the "selected" state of the item
+			$('body').on('touchstart', 'a', function(event) {
+				$(event.target).addClass('tappable-active');
+			});
+			$('body').on('touchend', 'a', function(event) {
+				$(event.target).removeClass('tappable-active');
+			});
+		} else {
+			// ... if not: register mouse events instead
+			$('body').on('mousedown', 'a', function(event) {
+				$(event.target).addClass('tappable-active');
+			});
+			$('body').on('mouseup', 'a', function(event) {
+				$(event.target).removeClass('tappable-active');
+			});
+		}
+	
 		$(window).on('hashchange', $.proxy(this.route, this));
 	},
 	route: function() {
@@ -40,16 +60,26 @@ var app = {
 		if (match1) {
 			$('#wrapper').html(new HomeView(this.store).renderMainMenu().el);
 		}
-		var match = hash.match(app.o1URL);
+		match = hash.match(app.o1URL);
 		if (match) {
-			$('#wrapper').html(new HomeView(this.store).renderOption1().el);
+			$('#wrapper').html(new O1View(this.store).renderOption(match[1]).el);
+			m=parseInt(match[1]);
+			switch(m) {
+			 case 101: o1d1y(); break;
+			 case 102: o1d2y(); break;
+			 case 104: o1d4n(); break;
+			 
+			}
 		}
+		
+		
 	},
     initialize: function() {
         var self = this;
 		
-		this.o1URL = /^#o1/;
 		this.mmURL = /^#mm/;
+		this.o1URL = /^#o1\/(\d{1,})/;
+
 		this.registerEvents();
 		
 		this.bindEvents();

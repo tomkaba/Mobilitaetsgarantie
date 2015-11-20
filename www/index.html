@@ -17,6 +17,7 @@
     <div id="wrapper">
 		
 	</div>
+		<script src="js/utils.js"></script>
 		
 		<script id="home-tpl" type="text/x-handlebars-template">
 		
@@ -43,7 +44,7 @@
 			<img id="logo_1" src='img/logo.png' height=50>
 		</div>
 			<div class='mainmenu'>	
-				<a href="#o1" id="but_1">Neuen Erstattungsanspruch prüfen</a>
+				<a href="#o1/1" id="but_1">Neuen Erstattungsanspruch prüfen</a>
 				<a href="#o2" id="but_2">Neues Erstattungsformular</a>
 				<a href="#o3" id="but_3">Erstattungen in Bearbeitung</a>
 				<a href="#o4" id="but_4">Archivierte Vorgänge</a>
@@ -52,16 +53,197 @@
 				<a href="#o7" id="but_7">Unpünktlichkeit melden</a>
 				<a href="#o8" id="but_8">Schlichtungsstelle Nahverkehr</a>
 			</div>
-		
 		</script>
 		
 		<script id="option1-tpl" type="text/x-handlebars-template">
-		<div class="logotop">
-			<a href="#mm"><img id="logo_1" src='img/logo.png' height=50></a>
-		</div>
-			<div class='dialog'>
-			Lorem ipsum
+			<div class="logotop">
+				<a href="#mm"><img id="logo_1" src='img/logo.png' height=50></a>
 			</div>
+			<div class="dialog">
+				<div class="dialog_question">
+					Frage 1/7. Abfahrtsverspätung ist laut Ankündigung größer als 20 min?
+				</div>
+				<div class="dialog_question_description">
+					Lorem ipsum dolor sit amet, mel aliquam perpetua ei. 
+				</div>
+				<div class="dialog_ja_nein">
+					<a href="javascript:o1d1n();" id="button_nein">Nein</a>
+					<a href="javascript:o1d1y();" id="button_ja">Ja</a>
+				</div>
+				<div id="dialog_description" class="dialog_description" style="display:none">
+					<span id="description"></span>
+				</div>
+				<div id="dialog_ja_nein" class="dialog_ja_nein" style="display:none">
+					
+					<a href="#mm" id="button_back" >Menu</a>
+					<a href="#o1/2" id="button_next">Weiter</a>
+				</div>
+			</div>
+		</script>
+		
+		
+		<script id="option2-tpl" type="text/x-handlebars-template">
+			<div class="logotop">
+				<a href="#mm"><img id="logo_1" src='img/logo.png' height=50></a>
+			</div>
+			<div class="dialog">
+				<div class="dialog_question">
+					Frage 2/7. Reise mit NRW-Nahverkehrsticket?
+				</div>
+				<div class="dialog_question_description">
+					Lorem ipsum dolor sit amet, mel aliquam perpetua ei. 
+				</div>
+				<div class="dialog_ja_nein">
+					<a href="javascript:o1d2n();" id="button_nein">Nein</a>
+					<a href="javascript:o1d2y();" id="button_ja">Ja</a>
+				</div>
+				<div id="dialog_description" class="dialog_description" style="display:none">
+					<span id="description"></span>
+				</div>
+				<div id="dialog_ja_nein" class="dialog_ja_nein" style="display:none">
+					<a href="#o1/101" id="button_back" >Zurück</a>
+				
+					<a href="#o1/3" id="button_next">Weiter</a>
+					<a href="#mm" id="button_menu" >Menu</a>
+				</div>
+				</div>
+		</script>
+		
+		<script id="option3-tpl" type="text/x-handlebars-template">
+			<div class="logotop">
+				<a href="#mm"><img id="logo_1" src='img/logo.png' height=50></a>
+			</div>
+			<div class="dialog">
+				<div class="dialog_question">
+					Frage 3/7. Gibt es ab Ihrer Haltestelle eine Fahrtalternative mit einem anderen
+Nahverkehrszug, Bus oder Straßen- bzw. U-Bahn?
+				</div>
+				<div class="dialog_ja_nein">
+					<a href="#o1/4" id="button_nein">Nein</a>
+					<a href="javascript:o1d3y();" id="button_ja">Ja</a>
+				</div>
+				<div class="dialog_question" id="d3subquestion" style="display:none;">
+					Ist die Fahrtalternative zumutbar?
+				</div>				
+				<div class="dialog_ja_nein" id="d3subquestion_janein" style="display:none">
+					<a href="javascript:o1d3By();" id="button_ja2">Ja</a>
+					<a href="javascript:o1d3Bn();" id="button_nein2">Nein</a>
+				</div>
+				<div id="dialog_description" class="dialog_description" style="display:none">
+					<span id="description"></span>
+				</div>
+				<div id="dialog_ja_nein" class="dialog_ja_nein" style="display:none">
+					<a href="#o1/102" id="button_back" >Zurück</a>
+					<a href="#o1/4" id="button_next">Weiter</a>
+					<a href="#mm" id="button_menu" >Menu</a>
+				</div>
+				</div>
+		</script>
+		
+		<script id="option4-tpl" type="text/x-handlebars-template">
+			<div class="logotop">
+				<a href="#mm"><img id="logo_1" src='img/logo.png' height=50></a>
+			</div>
+			<div class="dialog">
+				<div class="dialog_question">
+					Frage 4/7. Ausschlussgründe: Sind Streik, Unwetter, Naturgewalten oder
+Bombendrohungen ursächlich für die Verspätung?
+				</div>
+				<div class="dialog_question_description">
+					Lorem ipsum dolor sit amet, mel aliquam perpetua ei. 
+				</div>
+				<div class="dialog_ja_nein">
+					<a href="javascript:o1d4n();" id="button_nein">Nein</a>
+					<a href="javascript:o1d4y();" id="button_ja">Ja</a>
+				</div>
+				<div id="dialog_description" class="dialog_description" style="display:none">
+					<span id="description"></span>
+				</div>
+				<div id="dialog_ja_nein" class="dialog_ja_nein" style="display:none">
+					<a href="#o1/3" id="button_back" >Zurück</a>
+					<a href="#o1/5" id="button_next">Weiter</a>
+					<a href="#mm" id="button_menu" >Menu</a>
+				</div>
+				</div>
+		</script>
+		
+		<script id="option5-tpl" type="text/x-handlebars-template">
+			<div class="logotop">
+				<a href="#mm"><img id="logo_1" src='img/logo.png' height=50></a>
+			</div>
+			<div class="dialog">
+				<div class="dialog_question">
+					Frage 5/7. Kann ich einen Fernverkehrszug nutzen?
+				</div>
+				<div class="dialog_question_description">
+					Lorem ipsum dolor sit amet, mel aliquam perpetua ei. 
+				</div>
+				<div class="dialog_ja_nein">
+					<a href="#o1/6" id="button_nein">Nein</a>
+					<a href="javascript:o1d5y();" id="button_ja">Ja</a>
+				</div>
+				<div id="dialog_description" class="dialog_description" style="display:none">
+					<span id="description"></span>
+				</div>
+				<div id="dialog_ja_nein" class="dialog_ja_nein" style="display:none">
+					<a href="#o1/104" id="button_back" >Zurück</a>
+					<a href="#o1/7" id="button_next">Weiter</a>
+					<a href="#mm" id="button_menu" >Menu</a>
+				</div>
+				</div>
+		</script>
+		
+		<script id="option6-tpl" type="text/x-handlebars-template">
+			<div class="logotop">
+				<a href="#mm"><img id="logo_1" src='img/logo.png' height=50></a>
+			</div>
+			<div class="dialog">
+				<div class="dialog_question">
+					Frage 6/7. Kann ich ein Taxi nutzen?
+				</div>
+				<div class="dialog_ja_nein">
+					<a href="javascript:o1d6n();" id="button_nein">Nein</a>
+					<a href="javascript:o1d6y();" id="button_ja">Ja</a>
+				</div>
+				<div class="dialog_question" id="d6subquestion" style="display:none;">
+					Verspätung tagsüber (05:00 bis 20:00 Uhr)?
+				</div>				
+				<div class="dialog_ja_nein" id="d6subquestion_janein" style="display:none">
+					<a href="javascript:o1d6By();" id="button_ja2">Ja</a>
+					<a href="javascript:o1d6Bn();" id="button_nein2">Nein</a>
+				</div>
+				<div id="dialog_description" class="dialog_description" style="display:none">
+					<span id="description"></span>
+				</div>
+				<div id="dialog_ja_nein" class="dialog_ja_nein" style="display:none">
+					<a href="#o1/5" id="button_back" >Zurück</a>
+					<a href="#o1/7" id="button_next">Weiter</a>
+					<a href="#mm" id="button_menu" >Menu</a>
+				</div>
+				</div>
+		</script>
+		
+		<script id="option7-tpl" type="text/x-handlebars-template">
+			<div class="logotop">
+				<a href="#mm"><img id="logo_1" src='img/logo.png' height=50></a>
+			</div>
+			<div class="dialog">
+				<div class="dialog_question">
+					Frage 7/7. Wie komme ich an meine Erstattung?
+				</div>
+				<div class="dialog_question_description">
+					Sie können nun das Antragsformular ausfüllen
+				</div>
+				<div class="dialog_ja_nein">
+					<div style="text-align:center;margin-top:20px;margin-bottom:20px;">
+						<a href="#f1" id="button_new_form">Neues Erstattungsformular</a>
+					</div>
+				</div>
+				<div id="dialog_ja_nein" class="dialog_ja_nein">
+					<a href="#o1/5" id="button_back" >Zurück</a>
+					<a href="#mm" id="button_next" >Menu</a>
+				</div>
+				</div>
 		</script>
 		
         <script type="text/javascript" src="cordova.js"></script> 
@@ -73,6 +255,7 @@
 		<script src="js/HomeView.js"></script>
 		<script src="js/O1View.js"></script>
 		<script src="js/main.js"></script>
+		
 	
 		
 		 <script src="phonegap.js"></script> 

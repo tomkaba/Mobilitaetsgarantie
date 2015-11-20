@@ -44,7 +44,7 @@ body {
 
 .header-button {
     position: absolute;
-    top: 6;
+    top: 6px;
     padding: 7px 5px;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     line-height: 1em;
@@ -63,6 +63,9 @@ body {
     margin-bottom: 6px;
     border-bottom: solid 1px #666;
 }
+
+
+
 
 input[type="search"] {
     width:100%;
