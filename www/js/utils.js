@@ -71,7 +71,7 @@ function o1d1y() {
 }
 
 function o1d2n() {
-		var description="In Ihrem Fall kommt eine Entschädigung nach dem Fahrgastrechtegesetz in Betracht, wenn Ihre Verspätung sich am Zielbahnhof auf mehr als 60 Minuten beläuft. Weitere Informationen dazu finden Sie unter <a href='http://www.example.org' target=_blank>www.example.org</a>";
+		var description="In Ihrem Fall kommt eine Entschädigung nach dem Fahrgastrechtegesetz in Betracht, wenn Ihre Verspätung sich am Zielbahnhof auf mehr als 60 Minuten beläuft. Weitere Informationen dazu finden Sie unter <a href=\"#\" onclick=\"window.open('http://www.example.org', '_system');\">www.example.org</a>";
 		css_click("#button_nein","#3cb0fd");	
 		css_unclick("#button_ja");	
 		disable("#button_next");
