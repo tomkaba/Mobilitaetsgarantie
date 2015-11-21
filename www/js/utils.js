@@ -50,8 +50,45 @@ function hide(id) {
 	$(id).css("display","none");
 }
 
+
+function displaysidebarmenuicon() {
+	$("#topbar").css("display","block");
+}
+
+function hidesidebarmenuicon() {
+	$("#topbar").css("display","none");
+}
+
+
+
+function showPopUpMessage(msg) {
+                overlayElement = document.createElement("div");
+                overlayElement.className = 'modalOverlay';
+                modalWindowElement = document.createElement("div");
+                modalWindowElement.className = 'modalWindow';
+                modalWindowElement.innerHTML = msg;
+                modalWindowElement.style.left = (window.innerWidth - 200) / 2 + "px";
+                document.body.appendChild(overlayElement);
+                document.body.appendChild(modalWindowElement);
+                setTimeout(function() {
+                    modalWindowElement.style.opacity = 1;
+                    overlayElement.style.opacity = 0.4;
+                    overlayElement.addEventListener("click", hidePopUpMessage, false);
+                }, 300);
+            }
+//hide the modal overlay and popup window
+function hidePopUpMessage() {
+                modalWindowElement.style.opacity = 0;
+                overlayElement.style.opacity = 0;
+                overlayElement.removeEventListener("click", hidePopUpMessage, false);
+                setTimeout(function() {
+                    document.body.removeChild(overlayElement);
+                    document.body.removeChild(modalWindowElement);
+                }, 400);
+}
+
 function o1d1n() {
-		var description="No has percipit voluptatum definitiones. Nihil ignota graeco ea his. Sit mucius causae interpretaris ut, has ex assum argumentum, id per stet vitae urbanitas";
+		var description="Es reicht aus, dass eine Verspätung von mindestens zwanzig Minuten oder ein Ausfall angekündigt ist. Sie müssen die zwanzig Minuten nicht abwarten.";
 		css_click("#button_nein","#3cb0fd");	
 		css_unclick("#button_ja");	
 		disable("#button_next");
@@ -61,7 +98,7 @@ function o1d1n() {
 }
 
 function o1d1y() {
-		var description="Tollit ponderum qui eu. Ex has dico veritus nostrum. Autem tritani aliquam te duo, omnis homero pri eu, eos decore munere recteque ei.";
+		var description="Weiter";
 		css_click("#button_ja","#3cb0fd");	
 		css_unclick("#button_nein");
 		enable("#button_next");
@@ -81,7 +118,7 @@ function o1d2n() {
 }
 
 function o1d2y() {
-		var description="Tollit ponderum qui eu. Ex has dico veritus nostrum. Autem tritani aliquam te duo, omnis homero pri eu, eos decore munere recteque ei.";
+		var description="Weiter";
 		css_click("#button_ja","#3cb0fd");	
 		css_unclick("#button_nein");
 		enable("#button_next");
@@ -95,11 +132,12 @@ function o1d3y() {
 		css_click("#button_ja","#3cb0fd");	
 		css_unclick("#button_nein");	
 		show("#d3subquestion");
+		show("#dialog_subquestion_description");
 		show("#d3subquestion_janein");
 }
 
 function o1d3Bn() {
-		var description="Press Weiter to continue";
+		var description="Weiter";
 		css_click("#button_nein2","#3cb0fd");	
 		css_unclick("#button_ja2");	
 		enable("#button_next");
@@ -109,7 +147,7 @@ function o1d3Bn() {
 }
 
 function o1d3By() {
-		var description="Kein Anspruch";
+		var description="Sie müssen eine zumutbare Fahrtalternative nutzen. Ein Erstattungsanspruch nach Mobilitätsgarantie NRW besteht nicht. Melden Sie uns die Verspätung trotzdem!";
 		css_click("#button_ja2","#3cb0fd");	
 		css_unclick("#button_nein2");
 		disable("#button_next");
@@ -119,7 +157,7 @@ function o1d3By() {
 }
 
 function o1d4n() {
-		var description="Tollit ponderum qui eu. Ex has dico veritus nostrum. Autem tritani aliquam te duo, omnis homero pri eu, eos decore munere recteque ei.";
+		var description="Weiter";
 		css_click("#button_nein","#3cb0fd");	
 		css_unclick("#button_ja");	
 		enable("#button_next");
@@ -129,7 +167,7 @@ function o1d4n() {
 }
 
 function o1d4y() {
-		var description="Kein Anspruch";
+		var description="Sie haben keinen Anspruch nach der Mobilitätsgarantie.  Melden Sie uns die Verspätung trotzdem!";
 		css_click("#button_ja","#3cb0fd");	
 		css_unclick("#button_nein");
 		disable("#button_next");
@@ -170,7 +208,7 @@ function o1d6n() {
 }
 
 function o1d6Bn() {
-		var description="Bei einer Verspätung zwischen 20:00 Uhr und 05:00 Uhr können nach der Mobilitätsgarantie die Kosten für das Taxi bis zu 50,- € pro Person erstattet werden";
+		var description="Bei einer Verspätung zwischen 20:00 Uhr und 05:00 Uhr können nach der Mobilitätsgarantie die Kosten für das Taxi bis zu <b>50,- € pro Person</b> erstattet werden";
 		css_click("#button_nein2","#3cb0fd");	
 		css_unclick("#button_ja2");	
 		enable("#button_next");
@@ -180,7 +218,7 @@ function o1d6Bn() {
 }
 
 function o1d6By() {
-		var description="Bei einer Verspätung zwischen 05:00 Uhr und 20:00 Uhr können nach der Mobilitätsgarantie die Kosten für das Taxi bis zu 25,- € pro Person erstattet werden";
+		var description="Bei einer Verspätung zwischen 05:00 Uhr und 20:00 Uhr können nach der Mobilitätsgarantie die Kosten für das Taxi bis zu <b>25,- € pro Person</b> erstattet werden";
 		css_click("#button_ja2","#3cb0fd");	
 		css_unclick("#button_nein2");
 		enable("#button_next");

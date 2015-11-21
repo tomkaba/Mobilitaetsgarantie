@@ -9,14 +9,54 @@
         <meta name="format-detection" content="telephone=no" />
         <meta name="msapplication-tap-highlight" content="no" />
         <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
         <link rel="stylesheet" type="text/css" href="css/index.css" />
-        <title>Mobilitaetsgarantie</title>
-    </head>
-    <body>
-    <div id="wrapper">
+		<link href="lib/ionic/release/css/ionic.css" rel="stylesheet">
 		
+		<script src="lib/ionic/release/js/ionic.bundle.js"></script>
+        <title>Mobilitaetsgarantie</title>
+		
+		
+		 
+    </head>
+	
+    <body ng-app="todo" ng-controller="TodoCtrl">
+	<div class="bar bar-header bar-stable" id="topbar" style="display:none">
+		<button class="button button-icon" ng-click="toggleMenu()"  >
+			<i class="icon ion-navicon"></i>
+	</button>
+		<span class="title" style="font-size:14px;">Schlichtungsstelle Nahverkehr</span>
 	</div>
+	
+    <ion-side-menus>
+			<!-- Left menu -->
+			<ion-side-menu side="left">
+			  <ion-header-bar class="bar-dark">
+				
+				<h1 class="title">Menu</h1>
+				
+			  </ion-header-bar>
+			  <ion-content scroll="false">
+				<ion-list>
+					<ion-item><a menu-close href="#mm" >Hauptmenu</a></ion-item>
+					<ion-item><a menu-close href="#" >Einstellungen</a></ion-item>
+					<ion-item><a menu-close href="#" >Profildaten/Vorlagen</a></ion-item>
+					<ion-item><a menu-close href="#" >Meine Erstattungen</a></ion-item>
+					<ion-item><a menu-close href="#" >Rechtliche Hinweise</a></ion-item>
+					<ion-item><a menu-close href="#" >Infos zur Mobilitätsgarantie</a></ion-item>
+				</ion-list>
+			  </ion-content>		
+			</ion-side-menu>
+	<ion-side-menu-content >
+		<ion-content scroll="true" overflow-scroll="true">
+	
+		<div id="wrapper">
+		</div>
+		
+		</ion-content>
+	</ion-side-menu-content>
+	</ion-side-menus>
+	
 		<script src="js/utils.js"></script>
 		
 		<script id="home-tpl" type="text/x-handlebars-template">
@@ -27,7 +67,7 @@
 			 
 					<div class="logo"><a href="#mm"><img src="img/logo.png"></a></div>
 				
-					<h1><a href="#mm">Mobilitaetsgarantie</a></h1>
+					<!-- <h1><a href="#mm">Mobilitaetsgarantie</a></h1> -->
 					<div id='deviceready' class='blink'>
 						<p class='event listening'><a href="#mm">loading...</a></p>
 						<p class='event received'><a href="#mm">tap to proceed</a></p>
@@ -40,62 +80,56 @@
 		</script>
 		
 		<script id="mainmenu-tpl" type="text/x-handlebars-template">
+		
+		
 		<div class="logotop">
-			<img id="logo_1" src='img/logo.png' height=50>
+			<img id="logo_1" src='img/logo.png' > 
 		</div>
+		
 			<div class='mainmenu'>	
-				<a href="#o1/1" id="but_1">Neuen Erstattungsanspruch prüfen</a>
-				<a href="#o2" id="but_2">Neues Erstattungsformular</a>
-				<a href="#o3" id="but_3">Erstattungen in Bearbeitung</a>
-				<a href="#o4" id="but_4">Archivierte Vorgänge</a>
-				<a href="#o5" id="but_5">Infos zur Mobilitätsgarantie</a>
-				<a href="#o6" id="but_6">Einstellungen</a>
-				<a href="#o7" id="but_7">Unpünktlichkeit melden</a>
-				<a href="#o8" id="but_8">Schlichtungsstelle Nahverkehr</a>
+				<a href="#o1/1" class="button" id="but_1">Erstattungsanspruch prüfen</a>
+				<a href="#o2" class="button" id="but_2">Neuer Erstattungsantrag</a>
+				<a href="#o3" class="button" id="but_3">Unpünktlichkeit melden</a>
+				<a href="#o4" class="button" id="but_4">Schlichtungsstelle Nahverkehr</a>
 			</div>
 		</script>
 		
 		<script id="option1-tpl" type="text/x-handlebars-template">
-			<div class="logotop">
-				<a href="#mm"><img id="logo_1" src='img/logo.png' height=50></a>
-			</div>
+			
 			<div class="dialog">
 				<div class="dialog_question">
-					Frage 1/7. Abfahrtsverspätung ist laut Ankündigung größer als 20 min?
+					Frage 1/7. Abfahrtsverspätung laut Ankündigung größer als 20 min?
 				</div>
 				<div class="dialog_question_description">
-					Lorem ipsum dolor sit amet, mel aliquam perpetua ei. 
+					Erläuterungstext: Es reicht aus, dass eine Verspätung von mindestens zwanzig Minuten oder ein Ausfall angekündigt ist. Sie müssen die zwanzig Minuten nicht abwarten. 
 				</div>
 				<div class="dialog_ja_nein">
+					
 					<a href="javascript:o1d1n();" id="button_nein">Nein</a>
-					<a href="javascript:o1d1y();" id="button_ja">Ja</a>
+					<!-- <a href="javascript:o1d1y();" id="button_ja">Ja</a> -->
+					<a href="#o1/2" id="button_ja">Ja</a>
 				</div>
 				<div id="dialog_description" class="dialog_description" style="display:none">
 					<span id="description"></span>
 				</div>
 				<div id="dialog_ja_nein" class="dialog_ja_nein" style="display:none">
-					
-					<a href="#mm" id="button_back" >Menu</a>
-					<a href="#o1/2" id="button_next">Weiter</a>
+					<a href="#o1/2"  id="button_next">Weiter</a>
 				</div>
 			</div>
 		</script>
 		
 		
 		<script id="option2-tpl" type="text/x-handlebars-template">
-			<div class="logotop">
-				<a href="#mm"><img id="logo_1" src='img/logo.png' height=50></a>
-			</div>
+			
 			<div class="dialog">
 				<div class="dialog_question">
 					Frage 2/7. Reise mit NRW-Nahverkehrsticket?
 				</div>
-				<div class="dialog_question_description">
-					Lorem ipsum dolor sit amet, mel aliquam perpetua ei. 
-				</div>
+				
 				<div class="dialog_ja_nein">
 					<a href="javascript:o1d2n();" id="button_nein">Nein</a>
-					<a href="javascript:o1d2y();" id="button_ja">Ja</a>
+				<!--	<a href="javascript:o1d2y();" id="button_ja">Ja</a> -->
+					<a href="#o1/3" id="button_ja">Ja</a>
 				</div>
 				<div id="dialog_description" class="dialog_description" style="display:none">
 					<span id="description"></span>
@@ -104,56 +138,57 @@
 					<a href="#o1/101" id="button_back" >Zurück</a>
 				
 					<a href="#o1/3" id="button_next">Weiter</a>
-					<a href="#mm" id="button_menu" >Menu</a>
+					<!-- <div style="margin-top:10px"><a href="#mm" id="button_menu" >Menu</a></div> -->
 				</div>
 				</div>
 		</script>
 		
 		<script id="option3-tpl" type="text/x-handlebars-template">
-			<div class="logotop">
-				<a href="#mm"><img id="logo_1" src='img/logo.png' height=50></a>
-			</div>
 			<div class="dialog">
-				<div class="dialog_question">
-					Frage 3/7. Gibt es ab Ihrer Haltestelle eine Fahrtalternative mit einem anderen
-Nahverkehrszug, Bus oder Straßen- bzw. U-Bahn?
+				<div class="dialog_question" style="height:100px;">
+					Frage 3/7. Gibt es an Ihrer Haltestelle eine Fahrtalternative mit Nahverkehrszug, Bus oder Straßen- bzw. U-Bahn?
 				</div>
 				<div class="dialog_ja_nein">
 					<a href="#o1/4" id="button_nein">Nein</a>
 					<a href="javascript:o1d3y();" id="button_ja">Ja</a>
 				</div>
-				<div class="dialog_question" id="d3subquestion" style="display:none;">
+				<div class="dialog_question" id="d3subquestion" style="height:35px;display:none;">
 					Ist die Fahrtalternative zumutbar?
-				</div>				
+				</div>		
+				<div class="dialog_description" id="dialog_subquestion_description" style="height:60px;display:none">
+					Die Fahralternative ist zumutbar, wenn Sie nicht mehr als 10 Minuten länger unterwegs sind.
+				</div>
 				<div class="dialog_ja_nein" id="d3subquestion_janein" style="display:none">
 					<a href="javascript:o1d3By();" id="button_ja2">Ja</a>
-					<a href="javascript:o1d3Bn();" id="button_nein2">Nein</a>
+					<!-- <a href="javascript:o1d3Bn();" id="button_nein2">Nein</a> -->
+					<a href="#o1/4" id="button_nein2">Nein</a>
 				</div>
-				<div id="dialog_description" class="dialog_description" style="display:none">
+				<div id="dialog_description" class="dialog_description" style="height:90px;display:none">
 					<span id="description"></span>
 				</div>
 				<div id="dialog_ja_nein" class="dialog_ja_nein" style="display:none">
 					<a href="#o1/102" id="button_back" >Zurück</a>
 					<a href="#o1/4" id="button_next">Weiter</a>
-					<a href="#mm" id="button_menu" >Menu</a>
+					<!--  <a href="#mm" id="button_menu" >Menu</a> -->
 				</div>
 				</div>
 		</script>
 		
+		
+		
+		
 		<script id="option4-tpl" type="text/x-handlebars-template">
-			<div class="logotop">
-				<a href="#mm"><img id="logo_1" src='img/logo.png' height=50></a>
-			</div>
+			
 			<div class="dialog">
-				<div class="dialog_question">
-					Frage 4/7. Ausschlussgründe: Sind Streik, Unwetter, Naturgewalten oder
-Bombendrohungen ursächlich für die Verspätung?
+				<div class="dialog_question" style="height:90px">
+					Frage 4/7. Ausschlussgründe: Ist Streik, Unwetter, Naturgewalt oder eine Bombendrohungen ursächlich für die Verspätung?
 				</div>
-				<div class="dialog_question_description">
-					Lorem ipsum dolor sit amet, mel aliquam perpetua ei. 
+				<div class="dialog_question_description" style="height:130px">
+					Informieren Sie sich über Radio, Fernsehen und Internet über Streikankündigungen und Unwetterwarnungen. Unwetter ist gegeben, wenn der Deutsche Wetterdienst eine Unwetterwarnung ausgegeben hat.  
 				</div>
 				<div class="dialog_ja_nein">
-					<a href="javascript:o1d4n();" id="button_nein">Nein</a>
+					<!-- <a href="javascript:o1d4n();" id="button_nein">Nein</a> -->
+					<a href="#o1/5" id="button_nein">Nein</a>
 					<a href="javascript:o1d4y();" id="button_ja">Ja</a>
 				</div>
 				<div id="dialog_description" class="dialog_description" style="display:none">
@@ -162,21 +197,20 @@ Bombendrohungen ursächlich für die Verspätung?
 				<div id="dialog_ja_nein" class="dialog_ja_nein" style="display:none">
 					<a href="#o1/3" id="button_back" >Zurück</a>
 					<a href="#o1/5" id="button_next">Weiter</a>
-					<a href="#mm" id="button_menu" >Menu</a>
+					
 				</div>
 				</div>
 		</script>
 		
 		<script id="option5-tpl" type="text/x-handlebars-template">
-			<div class="logotop">
-				<a href="#mm"><img id="logo_1" src='img/logo.png' height=50></a>
-			</div>
+			
 			<div class="dialog">
 				<div class="dialog_question">
-					Frage 5/7. Kann ich einen Fernverkehrszug nutzen?
+					Frage 5/7. Können Sie einen Fernverkehrszug nutzen?
 				</div>
-				<div class="dialog_question_description">
-					Lorem ipsum dolor sit amet, mel aliquam perpetua ei. 
+				<div class="dialog_question_description" style="height:110px;">
+					Sie müssen ein Ticket für den Fernverkehrszug kaufen. Der Preis wird inklusive Bordpreis voll erstattet. 
+Sie dürfen zwischen Taxi und Fernverkehrszug frei wählen, wenn an Ihrer Haltestelle beides möglich ist. 
 				</div>
 				<div class="dialog_ja_nein">
 					<a href="#o1/6" id="button_nein">Nein</a>
@@ -188,19 +222,21 @@ Bombendrohungen ursächlich für die Verspätung?
 				<div id="dialog_ja_nein" class="dialog_ja_nein" style="display:none">
 					<a href="#o1/104" id="button_back" >Zurück</a>
 					<a href="#o1/7" id="button_next">Weiter</a>
-					<a href="#mm" id="button_menu" >Menu</a>
 				</div>
 				</div>
 		</script>
 		
 		<script id="option6-tpl" type="text/x-handlebars-template">
-			<div class="logotop">
-				<a href="#mm"><img id="logo_1" src='img/logo.png' height=50></a>
-			</div>
 			<div class="dialog">
 				<div class="dialog_question">
-					Frage 6/7. Kann ich ein Taxi nutzen?
+					Frage 6/7. Können Sie ein Taxi nutzen?
 				</div>
+				<div class="dialog_question_description" id="popupdescription" onclick="showPopUpMessage('<p>Es gelten die Taxikosten zum Ziel. Innerhalb des vorgegebenen Kostenrahmens können Sie demnach mit dem Taxi sogar bis vor Ihre Haustür fahren. Nutzen Sie mit mehreren Betroffenen ein Taxi gemeinsam und lassen sich jeder die Quittung für den Teilbetrag ausstellen. Die Quittung muss Name, Datum, Uhrzeit und Fahrtstrecke enthalten. Jeder Reisende kann die Erstattung für seinen Teilbetrag beantragen. Die Mobilitätsgarantie NRW garantiert nur Erstattung für tatsächlich entstandene Kosten für Taxi oder Fernverkehrsnutzung. Sie gewährt keine weitere Entschädigung für Unannehmlichkeiten. Kosten für andere Transportmittel, zum Beispiel Privat-Auto, werden nicht erstattet.</p>');">
+
+				Es gelten die Taxikosten zum Ziel. Innerhalb des vorgegebenen Kostenrahmens können Sie demnach mit dem Taxi sogar bis vor Ihre Haustür fahren. <strong>TAP FOR MORE...</strong>
+				</div>
+
+
 				<div class="dialog_ja_nein">
 					<a href="javascript:o1d6n();" id="button_nein">Nein</a>
 					<a href="javascript:o1d6y();" id="button_ja">Ja</a>
@@ -212,53 +248,53 @@ Bombendrohungen ursächlich für die Verspätung?
 					<a href="javascript:o1d6By();" id="button_ja2">Ja</a>
 					<a href="javascript:o1d6Bn();" id="button_nein2">Nein</a>
 				</div>
-				<div id="dialog_description" class="dialog_description" style="display:none">
+				<div id="dialog_description" class="dialog_description" style="display:none;height:90px;">
 					<span id="description"></span>
 				</div>
 				<div id="dialog_ja_nein" class="dialog_ja_nein" style="display:none">
 					<a href="#o1/5" id="button_back" >Zurück</a>
 					<a href="#o1/7" id="button_next">Weiter</a>
-					<a href="#mm" id="button_menu" >Menu</a>
 				</div>
 				</div>
 		</script>
 		
 		<script id="option7-tpl" type="text/x-handlebars-template">
-			<div class="logotop">
-				<a href="#mm"><img id="logo_1" src='img/logo.png' height=50></a>
-			</div>
+			
 			<div class="dialog">
 				<div class="dialog_question">
 					Frage 7/7. Wie komme ich an meine Erstattung?
 				</div>
-				<div class="dialog_question_description">
-					Sie können nun das Antragsformular ausfüllen
+				<div class="dialog_question_description" style="height:330px">
+					Senden Sie Ihren Erstattungsantrag innerhalb von 14 Tagen nach der Fahrt an das Verkehrsunternehmen, dessen Fahrzeug verspätet war oder ausgefallen ist. 
+Wenn Sie nicht wissen, welches Verkehrsunternehmen das ist, senden Sie Ihren Antrag an den Verkehrsverbund, in dessen Bereich Sie starten wollten. Stimmen Sie in diesem Fall der Weitergabe Ihrer Daten an das zuständige Verkehrsunternehmen zu. 
+Sie müssen dem Erstattungsantrag Ihr Nahverkehrsticket (bei Zeitfahrkarten: in Kopie) und die Taxiquittung oder die verwendete Fahrkarte aus IC, EC oder ICE beilegen.
+Der Antrag muss unterschrieben sein.
+ 
+Beachte: Die zusätzliche Beantragung einer Kompensation nach dem Fahrgastrechtegesetz ist nicht zulässig!
 				</div>
 				<div class="dialog_ja_nein">
-					<div style="text-align:center;margin-top:20px;margin-bottom:20px;">
+					<div style="text-align:center;margin-top:10px;margin-bottom:20px;">
 						<a href="#f1" id="button_new_form">Neues Erstattungsformular</a>
 					</div>
 				</div>
 				<div id="dialog_ja_nein" class="dialog_ja_nein">
 					<a href="#o1/5" id="button_back" >Zurück</a>
-					<a href="#mm" id="button_next" >Menu</a>
 				</div>
 				</div>
 		</script>
 		
-        <script type="text/javascript" src="cordova.js"></script> 
-        <script src="lib/handlebars.js"></script>
 		
-		<script src="lib/jquery-1.8.2.min.js"></script>
+      <script type="text/javascript" src="cordova.js"></script> 
+        <script src="lib/handlebars-v4.0.5.js"></script>
+		<script src="lib/jquery-1.11.1.min.js"></script>
 		
 		<script src="js/storage/memory-store.js"></script>
 		<script src="js/HomeView.js"></script>
 		<script src="js/O1View.js"></script>
 		<script src="js/main.js"></script>
 		
-	
-		
-		 <script src="phonegap.js"></script> 
+	    <script src="js/app.js"></script> 		
+		<script src="phonegap.js"></script> 
     </body>
 </html>
 

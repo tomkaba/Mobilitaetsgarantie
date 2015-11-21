@@ -28,6 +28,8 @@ var app = {
 	},
 	registerEvents : function() {
 		var self = this;
+		var overlayElement = null;
+        var modalWindowElement = null;
 
 		// Check of browser supports touch events...
 		if (document.documentElement.hasOwnProperty('ontouchstart')) {
@@ -38,6 +40,8 @@ var app = {
 			$('body').on('touchend', 'a', function(event) {
 				$(event.target).removeClass('tappable-active');
 			});
+			
+			
 		} else {
 			// ... if not: register mouse events instead
 			$('body').on('mousedown', 'a', function(event) {
@@ -46,7 +50,11 @@ var app = {
 			$('body').on('mouseup', 'a', function(event) {
 				$(event.target).removeClass('tappable-active');
 			});
+			
 		}
+		
+		
+				
 	
 		$(window).on('hashchange', $.proxy(this.route, this));
 	},
@@ -59,6 +67,7 @@ var app = {
 		var match1 = hash.match(app.mmURL);
 		if (match1) {
 			$('#wrapper').html(new HomeView(this.store).renderMainMenu().el);
+			displaysidebarmenuicon(); 
 		}
 		match = hash.match(app.o1URL);
 		if (match) {
@@ -77,13 +86,15 @@ var app = {
     initialize: function() {
         var self = this;
 		
-		this.mmURL = /^#mm/;
-		this.o1URL = /^#o1\/(\d{1,})/;
+			
+		this.mmURL = /^#\/mm/;
+		this.o1URL = /^#\/o1\/(\d{1,})/;
 
 		this.registerEvents();
 		
 		this.bindEvents();
 		
+
 		this.store = new MemoryStore(function() {
 			$('#wrapper').html(new HomeView(self.store).render().el);
 		});
