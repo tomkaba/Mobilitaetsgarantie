@@ -1,9 +1,20 @@
 function css_click(id,color) {
+	
 	$(id).css("background",color);
-	$(id).css("border","solid #1f628d 1px");
+	$(id).css("background-image","-webkit-linear-gradient(top, color, #2980b9)");
+	$(id).css("background-image","-moz-linear-gradient(top, color, #2980b9)");
+	$(id).css("background-image","-ms-linear-gradient(top, color, #2980b9)");
+	$(id).css("background-image","-o-linear-gradient(top, color, #2980b9)");
+	$(id).css("background-image","linear-gradient(to bottom, color, #2980b9)");
 	$(id).css("-webkit-border-radius","28");
 	$(id).css("-moz-border-radius","28");
 	$(id).css("border-radius","28");
+	
+	$(id).css("-webkit-box-shadow","0px 1px 3px #666666");
+	$(id).css("-moz-box-shadow","0px 1px 3px #666666");
+	$(id).css("box-shadow","0px 1px 3px #666666");
+	
+	
 }
 
 function css_unclick(id) {
