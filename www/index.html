@@ -33,17 +33,17 @@
 			<ion-side-menu side="left">
 			  <ion-header-bar class="bar-dark">
 				
-				<h1 class="title">Menu</h1>
+				<h1 class="title" ng-cloak>Menu</h1>
 				
 			  </ion-header-bar>
 			  <ion-content scroll="false">
 				<ion-list>
-					<ion-item><a menu-close href="#mm" >Hauptmenu</a></ion-item>
-					<ion-item><a menu-close href="#" >Einstellungen</a></ion-item>
-					<ion-item><a menu-close href="#" >Profildaten/Vorlagen</a></ion-item>
-					<ion-item><a menu-close href="#" >Meine Erstattungen</a></ion-item>
-					<ion-item><a menu-close href="#" >Rechtliche Hinweise</a></ion-item>
-					<ion-item><a menu-close href="#" >Infos zur Mobilitätsgarantie</a></ion-item>
+					<ion-item><a ng-cloak menu-close href="#mm" >Hauptmenu</a></ion-item>
+					<ion-item><a ng-cloak menu-close href="#" >Einstellungen</a></ion-item>
+					<ion-item><a ng-cloak menu-close href="#" >Profildaten/Vorlagen</a></ion-item>
+					<ion-item><a ng-cloak menu-close href="#" >Meine Erstattungen</a></ion-item>
+					<ion-item><a ng-cloak menu-close href="#" >Rechtliche Hinweise</a></ion-item>
+					<ion-item><a ng-cloak menu-close href="#" >Infos zur Mobilitätsgarantie</a></ion-item>
 				</ion-list>
 			  </ion-content>		
 			</ion-side-menu>
@@ -54,6 +54,17 @@
 		</div>
 		
 		</ion-content>
+	<div class="bar bar-footer bar-dark" id="bottombar" style="display:none">
+		<a href="#mm" id="zuruckbutton" class="button button-small button-dark">
+			Zurück
+		</a>
+		<a href="#mm" id="weiterbutton" class="button button-small button-positive" style="display:none;float:right">
+			Weiter
+		</a>
+		<a href="#f1" id="formularbutton" class="button button-small button-energized" style="display:none">
+			Neues Erstattungsformular
+		</a>
+	</div>
 	</ion-side-menu-content>
 	</ion-side-menus>
 	
@@ -135,7 +146,7 @@
 					<span id="description"></span>
 				</div>
 				<div id="dialog_ja_nein" class="dialog_ja_nein" style="display:none">
-					<a href="#o1/101" id="button_back" >Zurück</a>
+					<!-- <a href="#o1/101" id="button_back" >Zurück</a> -->
 				
 					<a href="#o1/3" id="button_next">Weiter</a>
 					<!-- <div style="margin-top:10px"><a href="#mm" id="button_menu" >Menu</a></div> -->
@@ -167,7 +178,7 @@
 					<span id="description"></span>
 				</div>
 				<div id="dialog_ja_nein" class="dialog_ja_nein" style="display:none">
-					<a href="#o1/102" id="button_back" >Zurück</a>
+					<!-- <a href="#o1/102" id="button_back" >Zurück</a> -->
 					<a href="#o1/4" id="button_next">Weiter</a>
 					<!--  <a href="#mm" id="button_menu" >Menu</a> -->
 				</div>
@@ -195,7 +206,7 @@
 					<span id="description"></span>
 				</div>
 				<div id="dialog_ja_nein" class="dialog_ja_nein" style="display:none">
-					<a href="#o1/3" id="button_back" >Zurück</a>
+					<!-- <a href="#o1/3" id="button_back" >Zurück</a> -->
 					<a href="#o1/5" id="button_next">Weiter</a>
 					
 				</div>
@@ -219,10 +230,12 @@ Sie dürfen zwischen Taxi und Fernverkehrszug frei wählen, wenn an Ihrer Haltes
 				<div id="dialog_description" class="dialog_description" style="display:none">
 					<span id="description"></span>
 				</div>
+				<!--
 				<div id="dialog_ja_nein" class="dialog_ja_nein" style="display:none">
-					<a href="#o1/104" id="button_back" >Zurück</a>
+				
 					<a href="#o1/7" id="button_next">Weiter</a>
 				</div>
+				-->
 				</div>
 		</script>
 		
@@ -251,10 +264,12 @@ Sie dürfen zwischen Taxi und Fernverkehrszug frei wählen, wenn an Ihrer Haltes
 				<div id="dialog_description" class="dialog_description" style="display:none;height:90px;">
 					<span id="description"></span>
 				</div>
+				<!--
 				<div id="dialog_ja_nein" class="dialog_ja_nein" style="display:none">
-					<a href="#o1/5" id="button_back" >Zurück</a>
+					
 					<a href="#o1/7" id="button_next">Weiter</a>
 				</div>
+				-->
 				</div>
 		</script>
 		
@@ -272,18 +287,21 @@ Der Antrag muss unterschrieben sein.
  
 Beachte: Die zusätzliche Beantragung einer Kompensation nach dem Fahrgastrechtegesetz ist nicht zulässig!
 				</div>
+				<!--
 				<div class="dialog_ja_nein">
 					<div style="text-align:center;margin-top:10px;margin-bottom:20px;">
 						<a href="#f1" id="button_new_form">Neues Erstattungsformular</a>
 					</div>
 				</div>
+				
 				<div id="dialog_ja_nein" class="dialog_ja_nein">
 					<a href="#o1/5" id="button_back" >Zurück</a>
 				</div>
-				</div>
+				-->
+			</div>
 		</script>
 		
-		
+		<script type="text/javascript" src="lib/ng-cordova.min.js"></script> 
       <script type="text/javascript" src="cordova.js"></script> 
         <script src="lib/handlebars-v4.0.5.js"></script>
 		<script src="lib/jquery-1.11.1.min.js"></script>

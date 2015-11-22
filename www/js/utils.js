@@ -70,6 +70,13 @@ function hidesidebarmenuicon() {
 	$("#topbar").css("display","none");
 }
 
+function displaybottombar() {
+	$("#bottombar").css("display","block");
+}
+
+function hidebottombar() {
+	$("#bottombar").css("display","none");
+}
 
 
 function showPopUpMessage(msg) {
@@ -119,7 +126,7 @@ function o1d1y() {
 }
 
 function o1d2n() {
-		var description="In Ihrem Fall kommt eine Entschädigung nach dem Fahrgastrechtegesetz in Betracht, wenn Ihre Verspätung sich am Zielbahnhof auf mehr als 60 Minuten beläuft. Weitere Informationen dazu finden Sie unter <a href=\"#\" onclick=\"window.open('http://www.example.org', '_system');\">www.example.org</a>";
+		var description="In Ihrem Fall kommt eine Entschädigung nach dem Fahrgastrechtegesetz in Betracht, wenn Ihre Verspätung sich am Zielbahnhof auf mehr als 60 Minuten beläuft. Weitere Informationen dazu finden Sie unter <a href=\"#\" onclick=\"window.open('http://www.example.org', '_system'); return false;\">www.example.org</a>";
 		css_click("#button_nein","#3cb0fd");	
 		css_unclick("#button_ja");	
 		disable("#button_next");
@@ -195,6 +202,8 @@ function o1d5y() {
 		show("#dialog_ja_nein");	
 		set_description(description);
 		show("#dialog_description");
+		$("#weiterbutton").attr("href","#o1/7");
+		show("#weiterbutton");
 }
 
 function o1d6y() {
@@ -226,6 +235,8 @@ function o1d6Bn() {
 		show("#dialog_ja_nein");
 		set_description(description);
 		show("#dialog_description");
+		$("#weiterbutton").attr("href","#o1/7");
+		show("#weiterbutton");
 }
 
 function o1d6By() {
@@ -236,4 +247,6 @@ function o1d6By() {
 		show("#dialog_ja_nein");	
 		set_description(description);
 		show("#dialog_description");
+		$("#weiterbutton").attr("href","#o1/7");
+		show("#weiterbutton");
 }

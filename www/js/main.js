@@ -5,11 +5,22 @@ var app = {
         document.addEventListener('deviceready', this.onDeviceReady, false);
     },
 	onDeviceReady: function() {
-		
-        app.receivedEvent('deviceready');
+	/*
+		document.addEventListener("backbutton", function(e){
+			e.preventDefault();
+			alert(window.location.hash);
+			return false;
+		}, false);
+    */
+		setTimeout(function() {
+			window.location.hash="#/mm"
+		}, 1500);
     },
 	
 	receivedEvent: function(id) {
+		
+		
+		/*	
         var parentElement = document.getElementById(id);
         var listeningElement = parentElement.querySelector('.listening');
         var receivedElement = parentElement.querySelector('.received');
@@ -18,6 +29,7 @@ var app = {
         receivedElement.setAttribute('style', 'display:block;');
 
         console.log('Received Event: ' + id);
+		*/
     },
 	showAlert: function (message, title) {
 		if (navigator.notification) {
@@ -68,17 +80,28 @@ var app = {
 		if (match1) {
 			$('#wrapper').html(new HomeView(this.store).renderMainMenu().el);
 			displaysidebarmenuicon(); 
+			hidebottombar();
 		}
 		match = hash.match(app.o1URL);
 		if (match) {
 			$('#wrapper').html(new O1View(this.store).renderOption(match[1]).el);
 			m=parseInt(match[1]);
 			switch(m) {
+			 case 1: $("#zuruckbutton").attr('href','#mm'); hide('#formularbutton'); hide('#weiterbutton'); break;
+			 case 2: $("#zuruckbutton").attr('href','#o1/1'); hide('#formularbutton'); hide('#weiterbutton'); break;
+			 case 3: $("#zuruckbutton").attr('href','#o1/2'); hide('#formularbutton'); hide('#weiterbutton'); break;
+			 case 4: $("#zuruckbutton").attr('href','#o1/3'); hide('#formularbutton'); hide('#weiterbutton'); break;
+			 case 5: $("#zuruckbutton").attr('href','#o1/4'); hide('#formularbutton'); hide('#weiterbutton'); break;
+			 case 6: $("#zuruckbutton").attr('href','#o1/5'); hide('#formularbutton'); hide('#weiterbutton'); break;
+			 case 7: $("#zuruckbutton").attr('href','#o1/6'); show('#formularbutton'); hide('#weiterbutton'); break;
+			 
+			 
 			 case 101: o1d1y(); break;
 			 case 102: o1d2y(); break;
 			 case 104: o1d4n(); break;
 			 
 			}
+			displaybottombar();
 		}
 		
 		
