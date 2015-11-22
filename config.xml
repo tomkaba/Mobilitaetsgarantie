@@ -14,7 +14,7 @@
   <preference name="detect-data-types" value="true"/>
   <preference name="exit-on-suspend" value="false"/>
   <preference name="show-splash-screen-spinner" value="true"/>
-  <preference name="auto-hide-splash-screen" value="false"/>
+  <preference name="auto-hide-splash-screen" value="true"/>
   <preference name="disable-cursor" value="false"/>
   <preference name="android-minSdkVersion" value="14"/>
   <preference name="android-installLocation" value="auto"/>
@@ -54,10 +54,7 @@
   <icon src="www/res/icon/windows-phone/icon-48.png" gap:platform="winphone"/>
   <icon src="www/res/icon/windows-phone/icon-173-tile.png" gap:platform="winphone" gap:role="background"/>
   
-  <preference name="SplashScreen" value="screen" />
-  <preference name="SplashScreenDelay" value="10000" />
-  <gap:splash src="screen.png" />
-  
+
   <access origin="*"/>
   <plugin name="cordova-plugin-whitelist" version="1"/>
   <allow-intent href="http://*/*"/>
