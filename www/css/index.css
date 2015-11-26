@@ -70,7 +70,7 @@ body a {
 
 
 .mainmenu a {
-	width:280px;
+	width:85%;
 	height:60px
 	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
 	-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
@@ -88,11 +88,32 @@ body a {
 	font-weight:normal;
 	padding:6px 24px;
 	text-decoration:none;
+	text-align:left;
 	text-transform:none;
 	text-shadow:0px 1px 0px #ffffff;
 	margin-bottom:25px;
 }
 
+.nview {
+	padding-top:5px;
+	margin-top:10%;
+	display:block;
+	width:100%;
+	height:80%;
+	text-align:center;
+}
+
+.infotext {
+	padding-top:5px;
+	width:99%;
+	margin-top:10%;
+	text-transform:none;
+	font-size:12px;
+	text-align:left;
+	padding-left:10px;
+	padding-right:10px;
+
+}
 
 .dialog {
 	padding-top:5px;
@@ -505,4 +526,11 @@ h1 {
   -webkit-border-radius:8px;
   -webkit-box-shadow:-1px 2px 12px rgba(0, 0, 0, 0.91);
   -webkit-transition: opacity 0.3s ease-in;
+}
+
+#placeholder_bottom 
+{
+	display:block;
+	height:50px;
+
 }

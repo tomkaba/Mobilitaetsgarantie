@@ -76,30 +76,45 @@ var app = {
 			$('#wrapper').html(new HomeView(this.store).render().el);
 			return;
 		}
-		var match1 = hash.match(app.mmURL);
-		if (match1) {
+		var match = hash.match(app.mmURL);
+		if (match) {
 			$('#wrapper').html(new HomeView(this.store).renderMainMenu().el);
+			reset_topbar_title();
 			displaysidebarmenuicon(); 
 			hidebottombar();
 		}
+		match = hash.match(app.profildatenURL)
+		if (match) {
+			$('#wrapper').html(new ProfildatenView(this.store).render().el);
+			set_topbar_title('Profildaten / Vorlagen');
+			displaysidebarmenuicon(); 
+			show('#savebutton');
+			displaybottombar();
+			assignLsProfildaten();
+		}
+		
+		match = hash.match(app.unpunktlichURL)
+		if (match) {
+			$('#wrapper').html(new UnpunktlichView(this.store).render().el);
+			set_topbar_title('Unpünktlichkeit melden');
+			displaysidebarmenuicon(); 
+			displaybottombar();
+			assignLsProfildaten();
+		}
+		
 		match = hash.match(app.o1URL);
 		if (match) {
 			$('#wrapper').html(new O1View(this.store).renderOption(match[1]).el);
 			m=parseInt(match[1]);
 			switch(m) {
-			 case 1: $("#zuruckbutton").attr('href','#mm'); hide('#formularbutton'); hide('#weiterbutton'); break;
-			 case 2: $("#zuruckbutton").attr('href','#o1/1'); hide('#formularbutton'); hide('#weiterbutton'); break;
-			 case 3: $("#zuruckbutton").attr('href','#o1/2'); hide('#formularbutton'); hide('#weiterbutton'); break;
-			 case 4: $("#zuruckbutton").attr('href','#o1/3'); hide('#formularbutton'); hide('#weiterbutton'); break;
-			 case 5: $("#zuruckbutton").attr('href','#o1/4'); hide('#formularbutton'); hide('#weiterbutton'); break;
-			 case 6: $("#zuruckbutton").attr('href','#o1/5'); hide('#formularbutton'); hide('#weiterbutton'); break;
-			 case 7: $("#zuruckbutton").attr('href','#o1/6'); show('#formularbutton'); hide('#weiterbutton'); break;
-			 
-			 
-			 case 101: o1d1y(); break;
-			 case 102: o1d2y(); break;
-			 case 104: o1d4n(); break;
-			 
+			 case 1: $("#zuruckbutton").attr('href','#mm'); hide('#formularbutton'); hide('#weiterbutton'); hide('#unpunktlichbutton'); hide("#savebutton"); set_topbar_title('Erstattungsanspruch prüfen 1/7'); break;
+			 case 2: $("#zuruckbutton").attr('href','#o1/1'); hide('#formularbutton'); hide('#weiterbutton'); hide('#unpunktlichbutton'); hide("#savebutton"); set_topbar_title('Erstattungsanspruch prüfen 2/7'); break;
+			 case 3: $("#zuruckbutton").attr('href','#o1/2'); hide('#formularbutton'); hide('#weiterbutton'); hide('#unpunktlichbutton'); hide("#savebutton"); set_topbar_title('Erstattungsanspruch prüfen 3/7'); break;
+			 case 4: $("#zuruckbutton").attr('href','#o1/3'); hide('#formularbutton'); hide('#weiterbutton'); hide('#unpunktlichbutton'); hide("#savebutton"); set_topbar_title('Erstattungsanspruch prüfen 4/7'); break;
+			 case 5: $("#zuruckbutton").attr('href','#o1/4'); hide('#formularbutton'); hide('#weiterbutton'); hide('#unpunktlichbutton'); hide("#savebutton"); set_topbar_title('Erstattungsanspruch prüfen 5/7'); break;
+			 case 6: $("#zuruckbutton").attr('href','#o1/5'); hide('#formularbutton'); hide('#weiterbutton'); hide('#unpunktlichbutton'); hide("#savebutton"); set_topbar_title('Erstattungsanspruch prüfen 6/7'); break;
+			 case 7: $("#zuruckbutton").attr('href','#o1/6'); show('#formularbutton'); hide('#weiterbutton'); hide('#unpunktlichbutton'); hide("#savebutton"); set_topbar_title('Erstattungsanspruch prüfen 7/7'); break;
+
 			}
 			displaybottombar();
 		}
@@ -112,13 +127,15 @@ var app = {
 			
 		this.mmURL = /^#\/mm/;
 		this.o1URL = /^#\/o1\/(\d{1,})/;
+		this.profildatenURL = /^#\/profildaten/;
+		this.unpunktlichURL = /^#\/unpunktlich/;
 
 		this.registerEvents();
 		
 		this.bindEvents();
 		
 
-		this.store = new MemoryStore(function() {
+		this.store = new LocalStorageStore(function() {
 			$('#wrapper').html(new HomeView(self.store).render().el);
 		});
 		

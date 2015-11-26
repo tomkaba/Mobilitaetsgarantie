@@ -25,7 +25,7 @@
 		<button class="button button-icon" ng-click="toggleMenu()"  >
 			<i class="icon ion-navicon"></i>
 	</button>
-		<span class="title" style="font-size:13px;">Schlichtungsstelle Nahverkehr</span>
+		<span class="title" id="topbartitle" style="font-size:13px;">Schlichtungsstelle Nahverkehr</span>
 	</div>
 	
     <ion-side-menus>
@@ -40,7 +40,7 @@
 				<ion-list>
 					<ion-item><a ng-cloak menu-close href="#mm" >Hauptmenu</a></ion-item>
 					<ion-item><a ng-cloak menu-close href="#" >Einstellungen</a></ion-item>
-					<ion-item><a ng-cloak menu-close href="#" >Profildaten/Vorlagen</a></ion-item>
+					<ion-item><a ng-cloak menu-close href="#profildaten" >Profildaten/Vorlagen</a></ion-item>
 					<ion-item><a ng-cloak menu-close href="#" >Meine Erstattungen</a></ion-item>
 					<ion-item><a ng-cloak menu-close href="#" >Rechtliche Hinweise</a></ion-item>
 					<ion-item><a ng-cloak menu-close href="#" >Infos zur Mobilitätsgarantie</a></ion-item>
@@ -61,8 +61,14 @@
 		<a href="#mm" id="weiterbutton" class="button button-small button-positive" style="display:none;float:right">
 			Weiter
 		</a>
-		<a href="#f1" id="formularbutton" class="button button-small button-energized" style="display:none">
+		<a href="#f1" id="formularbutton" class="button button-small button-energized" style="display:none;float:right">
 			Neues Erstattungsformular
+		</a>
+		<a href="#unpunktlich" id="unpunktlichbutton" class="button button-small button-calm" style="display:none;float:right">
+			Unpünktlichkeit melden
+		</a>
+		<a onclick="submitProfildaten();" id="savebutton" class="button button-small button-positive" style="display:none;float:right">
+			Sparen
 		</a>
 	</div>
 	</ion-side-menu-content>
@@ -71,16 +77,12 @@
 		<script src="js/utils.js"></script>
 		
 		<script id="home-tpl" type="text/x-handlebars-template">
-		
 			<div id='home'>
-			
 				<div class='app'>
-			 
 					<div class="logo"><a href="#mm"><img src="img/logo.png"></a></div>
-				
 					<!-- <h1><a href="#mm">Mobilitaetsgarantie</a></h1> -->
 					<div id='deviceready' class='blink'>
-						<p class='event listening'><a href="#mm">loading...</a></p>
+						<p class='event listening'><a href="#mm">App wird geladen...</a></p>
 						<p class='event received'><a href="#mm">tap to proceed</a></p>
 					</div>
 				</div>
@@ -91,16 +93,13 @@
 		</script>
 		
 		<script id="mainmenu-tpl" type="text/x-handlebars-template">
-		
-		
 		<div class="logotop">
 			<img id="logo_1" src='img/logo.png' > 
 		</div>
-		
 			<div class='mainmenu'>	
 				<a href="#o1/1" class="button" id="but_1">Erstattungsanspruch prüfen</a>
 				<a href="#o2" class="button" id="but_2">Neuer Erstattungsantrag</a>
-				<a href="#o3" class="button" id="but_3">Unpünktlichkeit melden</a>
+				<a href="#unpunktlich" class="button" id="but_3">Unpünktlichkeit melden</a>
 				<a href="#o4" class="button" id="but_4">Schlichtungsstelle Nahverkehr</a>
 			</div>
 		</script>
@@ -109,23 +108,20 @@
 			
 			<div class="dialog">
 				<div class="dialog_question">
-					Frage 1/7. Abfahrtsverspätung laut Ankündigung größer als 20 min?
+					Abfahrtsverspätung laut Ankündigung größer als 20 min?
 				</div>
 				<div class="dialog_question_description">
-					Erläuterungstext: Es reicht aus, dass eine Verspätung von mindestens zwanzig Minuten oder ein Ausfall angekündigt ist. Sie müssen die zwanzig Minuten nicht abwarten. 
+					Es reicht aus, dass eine Verspätung von mindestens zwanzig Minuten oder ein Ausfall angekündigt ist. Sie müssen die zwanzig Minuten nicht abwarten. 
 				</div>
 				<div class="dialog_ja_nein">
 					
 					<a href="javascript:o1d1n();" id="button_nein">Nein</a>
-					<!-- <a href="javascript:o1d1y();" id="button_ja">Ja</a> -->
 					<a href="#o1/2" id="button_ja">Ja</a>
 				</div>
-				<div id="dialog_description" class="dialog_description" style="display:none">
+				<div id="dialog_description" class="dialog_description" style="display:none;height:130px">
 					<span id="description"></span>
 				</div>
-				<div id="dialog_ja_nein" class="dialog_ja_nein" style="display:none">
-					<a href="#o1/2"  id="button_next">Weiter</a>
-				</div>
+				<div id="placeholder_bottom"></div>
 			</div>
 		</script>
 		
@@ -134,30 +130,24 @@
 			
 			<div class="dialog">
 				<div class="dialog_question">
-					Frage 2/7. Reise mit NRW-Nahverkehrsticket?
+					Reise mit NRW-Nahverkehrsticket?
 				</div>
 				
 				<div class="dialog_ja_nein">
 					<a href="javascript:o1d2n();" id="button_nein">Nein</a>
-				<!--	<a href="javascript:o1d2y();" id="button_ja">Ja</a> -->
 					<a href="#o1/3" id="button_ja">Ja</a>
 				</div>
 				<div id="dialog_description" class="dialog_description" style="display:none">
 					<span id="description"></span>
 				</div>
-				<div id="dialog_ja_nein" class="dialog_ja_nein" style="display:none">
-					<!-- <a href="#o1/101" id="button_back" >Zurück</a> -->
-				
-					<a href="#o1/3" id="button_next">Weiter</a>
-					<!-- <div style="margin-top:10px"><a href="#mm" id="button_menu" >Menu</a></div> -->
 				</div>
-				</div>
+				<div id="placeholder_bottom"></div>
 		</script>
 		
 		<script id="option3-tpl" type="text/x-handlebars-template">
 			<div class="dialog">
 				<div class="dialog_question" style="height:100px;">
-					Frage 3/7. Gibt es an Ihrer Haltestelle eine Fahrtalternative mit Nahverkehrszug, Bus oder Straßen- bzw. U-Bahn?
+					Gibt es an Ihrer Haltestelle eine Fahrtalternative mit Nahverkehrszug, Bus oder Straßen- bzw. U-Bahn?
 				</div>
 				<div class="dialog_ja_nein">
 					<a href="#o1/4" id="button_nein">Nein</a>
@@ -177,12 +167,9 @@
 				<div id="dialog_description" class="dialog_description" style="height:90px;display:none">
 					<span id="description"></span>
 				</div>
-				<div id="dialog_ja_nein" class="dialog_ja_nein" style="display:none">
-					<!-- <a href="#o1/102" id="button_back" >Zurück</a> -->
-					<a href="#o1/4" id="button_next">Weiter</a>
-					<!--  <a href="#mm" id="button_menu" >Menu</a> -->
-				</div>
-				</div>
+			<div id="placeholder_bottom"></div>	
+			</div>
+			
 		</script>
 		
 		
@@ -192,7 +179,7 @@
 			
 			<div class="dialog">
 				<div class="dialog_question" style="height:90px">
-					Frage 4/7. Ausschlussgründe: Ist Streik, Unwetter, Naturgewalt oder eine Bombendrohungen ursächlich für die Verspätung?
+					Ausschlussgründe: Ist Streik, Unwetter, Naturgewalt oder eine Bombendrohungen ursächlich für die Verspätung?
 				</div>
 				<div class="dialog_question_description" style="height:130px">
 					Informieren Sie sich über Radio, Fernsehen und Internet über Streikankündigungen und Unwetterwarnungen. Unwetter ist gegeben, wenn der Deutsche Wetterdienst eine Unwetterwarnung ausgegeben hat.  
@@ -205,11 +192,7 @@
 				<div id="dialog_description" class="dialog_description" style="display:none">
 					<span id="description"></span>
 				</div>
-				<div id="dialog_ja_nein" class="dialog_ja_nein" style="display:none">
-					<!-- <a href="#o1/3" id="button_back" >Zurück</a> -->
-					<a href="#o1/5" id="button_next">Weiter</a>
-					
-				</div>
+				<div id="placeholder_bottom"></div>
 				</div>
 		</script>
 		
@@ -217,7 +200,7 @@
 			
 			<div class="dialog">
 				<div class="dialog_question">
-					Frage 5/7. Können Sie einen Fernverkehrszug nutzen?
+					Können Sie einen Fernverkehrszug nutzen?
 				</div>
 				<div class="dialog_question_description" style="height:110px;">
 					Sie müssen ein Ticket für den Fernverkehrszug kaufen. Der Preis wird inklusive Bordpreis voll erstattet. 
@@ -227,26 +210,21 @@ Sie dürfen zwischen Taxi und Fernverkehrszug frei wählen, wenn an Ihrer Haltes
 					<a href="#o1/6" id="button_nein">Nein</a>
 					<a href="javascript:o1d5y();" id="button_ja">Ja</a>
 				</div>
-				<div id="dialog_description" class="dialog_description" style="display:none">
+				<div id="dialog_description" class="dialog_description" style="display:none;height:130px;">
 					<span id="description"></span>
 				</div>
-				<!--
-				<div id="dialog_ja_nein" class="dialog_ja_nein" style="display:none">
-				
-					<a href="#o1/7" id="button_next">Weiter</a>
-				</div>
-				-->
+				<div id="placeholder_bottom"></div>
 				</div>
 		</script>
 		
 		<script id="option6-tpl" type="text/x-handlebars-template">
 			<div class="dialog">
 				<div class="dialog_question">
-					Frage 6/7. Können Sie ein Taxi nutzen?
+					Können Sie ein Taxi nutzen?
 				</div>
 				<div class="dialog_question_description" id="popupdescription" onclick="showPopUpMessage('<p>Es gelten die Taxikosten zum Ziel. Innerhalb des vorgegebenen Kostenrahmens können Sie demnach mit dem Taxi sogar bis vor Ihre Haustür fahren. Nutzen Sie mit mehreren Betroffenen ein Taxi gemeinsam und lassen sich jeder die Quittung für den Teilbetrag ausstellen. Die Quittung muss Name, Datum, Uhrzeit und Fahrtstrecke enthalten. Jeder Reisende kann die Erstattung für seinen Teilbetrag beantragen. Die Mobilitätsgarantie NRW garantiert nur Erstattung für tatsächlich entstandene Kosten für Taxi oder Fernverkehrsnutzung. Sie gewährt keine weitere Entschädigung für Unannehmlichkeiten. Kosten für andere Transportmittel, zum Beispiel Privat-Auto, werden nicht erstattet.</p>');">
 
-				Es gelten die Taxikosten zum Ziel. Innerhalb des vorgegebenen Kostenrahmens können Sie demnach mit dem Taxi sogar bis vor Ihre Haustür fahren. <strong>TAP FOR MORE...</strong>
+				Es gelten die Taxikosten zum Ziel. Innerhalb des vorgegebenen Kostenrahmens können Sie demnach mit dem Taxi sogar bis vor Ihre Haustür fahren. <strong>Mehr...</strong>
 				</div>
 
 
@@ -261,15 +239,10 @@ Sie dürfen zwischen Taxi und Fernverkehrszug frei wählen, wenn an Ihrer Haltes
 					<a href="javascript:o1d6By();" id="button_ja2">Ja</a>
 					<a href="javascript:o1d6Bn();" id="button_nein2">Nein</a>
 				</div>
-				<div id="dialog_description" class="dialog_description" style="display:none;height:90px;">
+				<div id="dialog_description" class="dialog_description" style="display:none;height:90px;" onclick="showPopUpMessage('<p>Bei einer Verspätung zwischen 05:00 Uhr und 20:00    Uhr können nach der Mobilitätsgarantie die Kosten für das Taxi bis zu 25,- € pro Person erstattet werden.<br/>Bei einer Verspätung zwischen 20:00 Uhr und 05:00 Uhr können nach der Mobilitätsgarantie die Kosten für das Taxi bis zu 50,- € pro Person erstattet werden. <br/>Einige Verkehrsunternehmen und Verbünde in Nordrhein-Westfalen bieten eigene Garantieregelungen an, die einen höheren Erstattungsbetrag vorsehen. Erkundigen Sie sich bei Ihrem lokalen Verkehrsunternehmen, ob lokale Garantien für Ihr Ticket gelten.</p>');">
 					<span id="description"></span>
 				</div>
-				<!--
-				<div id="dialog_ja_nein" class="dialog_ja_nein" style="display:none">
-					
-					<a href="#o1/7" id="button_next">Weiter</a>
-				</div>
-				-->
+				<div id="placeholder_bottom"></div>
 				</div>
 		</script>
 		
@@ -277,7 +250,7 @@ Sie dürfen zwischen Taxi und Fernverkehrszug frei wählen, wenn an Ihrer Haltes
 			
 			<div class="dialog">
 				<div class="dialog_question">
-					Frage 7/7. Wie komme ich an meine Erstattung?
+					Wie komme ich an meine Erstattung?
 				</div>
 				<div class="dialog_question_description" style="height:345px">
 					Senden Sie Ihren Erstattungsantrag innerhalb von 14 Tagen nach der Fahrt an das Verkehrsunternehmen, dessen Fahrzeug verspätet war oder ausgefallen ist. 
@@ -287,28 +260,200 @@ Der Antrag muss unterschrieben sein.
  
 Beachte: Die zusätzliche Beantragung einer Kompensation nach dem Fahrgastrechtegesetz ist nicht zulässig!
 				</div>
-				<!--
-				<div class="dialog_ja_nein">
-					<div style="text-align:center;margin-top:10px;margin-bottom:20px;">
-						<a href="#f1" id="button_new_form">Neues Erstattungsformular</a>
-					</div>
-				</div>
-				
-				<div id="dialog_ja_nein" class="dialog_ja_nein">
-					<a href="#o1/5" id="button_back" >Zurück</a>
-				</div>
-				-->
+				<div id="placeholder_bottom"></div>
 			</div>
 		</script>
 		
+		<script id="profildaten-tpl" type="text/x-handlebars-template">
+			<div class="nview">
+			
+			<form name="profildatenForm" id="profildatenForm" novalidate="" > 	
+				<div class="card">
+				  <div class="item item-text-wrap">
+					Persönliche daten
+				  </div>
+				</div>
+				
+				<div class="list list-inset">	
+				  <label class="item item-input">
+					<input type="text" name="vorname" placeholder="Vorname">
+				  </label>
+				  <label class="item item-input">
+					<input type="text" name="name" placeholder="Name">
+				  </label>
+				  <label class="item item-input">
+					<input type="email" name="email" placeholder="E-Mail-Adresse">
+				  </label>
+				  <label class="item item-input">
+					<input type="text" name="phone" placeholder="Telefon">
+				  </label>
+				</div>
+				
+				<div class="card">
+				  <div class="item item-text-wrap">
+					Adresse
+				  </div>
+				</div>
+
+				<div class="list list-inset">
+				  
+				  <label class="item item-input">
+					<input type="text" name="street" placeholder="Straße">
+				  </label>
+				  <label class="item item-input">
+					<input type="text" name="flat" placeholder="Nr">
+				  </label>
+				  <label class="item item-input">
+					<input type="text" name="postcode" placeholder="PLZ">
+				  </label>
+				  <label class="item item-input">
+					<input type="text" name="city" placeholder="Ort">
+				  </label>
+				</div>
+				
+				<div class="card">
+				  <div class="item item-text-wrap">
+					Kontoverbindung
+				  </div>
+				</div>
+				<div class="list list-inset">
+				  <label class="item item-input">
+					<input type="text" name="account_holder" placeholder="Kontoinhaber">
+				  </label>
+				  <label class="item item-input">
+					<input type="text" name="iban" placeholder="IBAN">
+				  </label>
+				  <label class="item item-input">
+					<input type="text" name="bic" placeholder="BIC">
+				  </label>
+				</div>
+				
+			</form>
+				<div id="placeholder_bottom"></div>
+			</div>
+		</script>
+		
+		<script id="unpunktlich-tpl" type="text/x-handlebars-template">
+			<div class="nview">
+			
+			<form name="unpunktlichForm" id="unpunktlich" novalidate="" > 	
+				<p class="infotext">
+					Wenn Sie auf unpünktliche Fahrten oder unzureichende Informationen hinweisen möchten, melden Sie uns die Unpünktlichkeit. Wir möchten auch wissen, was Sie außer der Unpünktlichkeit noch gestört hat, zum Beispiel ob Ihnen Informationen fehlten. Die Ihre Angaben werden in der Schlichtungsstelle gesammelt, anonym ausgewertet und in Berichten veröffentlicht.<br/>
+
+Die Eingabe Ihrer Mailadresse ermöglicht uns (gegebenenfalls) Rückfragen zu stellen. Wenn Sie das nicht wünschen, lassen Sie das Feld offen.
+				</p>
+				<div class="card">
+				  <div class="item item-text-wrap">
+					Persönliche daten
+				  </div>
+				</div>
+				<div class="list list-inset">	
+				  <label class="item item-input">
+					<input type="text" name="vorname" placeholder="Vorname">
+				  </label>
+				  <label class="item item-input">
+					<input type="text" name="name" placeholder="Name">
+				  </label>
+				  <label class="item item-input">
+					<input type="email" name="email" placeholder="E-mailadresse">
+				  </label>
+				</div>
+				<div class="card">
+				  <div class="item item-text-wrap">
+					Angaben zur Verspätung
+				  </div>
+				</div>
+				<div class="list">
+
+				<div class="list">
+					<div class="item item-divider">
+						Ich melde eine
+					  </div>
+					<li class="item item-checkbox">
+						 <label class="checkbox">
+						   <input type="radio" name="group">
+						 </label>
+						 <span style="font-size:14px;">Verfrühung</span>
+				     </li>
+					 <li class="item item-checkbox">
+						 <label class="checkbox">
+						   <input type="radio" name="group">
+						 </label>
+						 <span style="font-size:14px;">> 10 Minuten Verspätung</span>
+				     </li>
+					 <li class="item item-checkbox">
+						 <label class="checkbox">
+						   <input type="radio" name="group">
+						 </label>
+						 <span style="font-size:14px;">> 20 Minuten Verspätung</span>
+				     </li>
+					 <li class="item item-checkbox">
+						 <label class="checkbox">
+						   <input type="radio" name="group">
+						 </label>
+						 <span style="font-size:14px;">> 30 Minuten Verspätung</span>
+				     </li>
+				</div>
+				
+				
+				<div class="list">
+					<li class="item item-checkbox">
+						 <label class="checkbox">
+						   <input type="checkbox" name="check1">
+						 </label>
+						 <span style="font-size:14px;">Über die Verspätung wurde<br/>informiert</span>
+				     </li>
+					<li class="item item-checkbox">
+						 <label class="checkbox">
+						   <input type="checkbox" name="check1">
+						 </label>
+						 <span style="font-size:14px;">Durch die Verspätung wurde ein <br/>Anschluss verpasst</span>
+				     </li>
+				</div>
+				<div class="list">
+  <label class="item item-input item-stacked-label" style="text-align:left">
+    <span class="input-label" >Datum</span>
+    <input type="date" >
+  </label>
+  <label class="item item-input item-stacked-label" style="text-align:left">
+    <span class="input-label" >Planmäßige Abfahrtszeit</span>
+    <input type="time">
+  </label>
+  <label class="item item-input item-stacked-label" style="text-align:left">
+    <span class="input-label" >Startpunkt</span>
+    <input type="text" placeholder="Startpunkt">
+  </label>
+  <label class="item item-input item-stacked-label" style="text-align:left">
+    <span class="input-label" >Endpunkt</span>
+    <input type="text" placeholder="Endpunkt">
+  </label>
+  <label class="item item-input item-stacked-label" style="text-align:left">
+    <span class="input-label" >Linie</span>
+    <input type="text" placeholder="Linie">
+  </label>
+  <label class="item item-input item-stacked-label" style="text-align:left">
+	<span class="input-label" >Zusätzliche Nachricht</span>
+    <textarea rows=7 placeholder="Zusätzliche Nachricht"></textarea>
+	
+  </label>
+</div>
+				
+			</form>
+				<div id="placeholder_bottom"></div>
+			</div>
+		</script>
+		
+		
 		<script type="text/javascript" src="lib/ng-cordova.min.js"></script> 
-      <script type="text/javascript" src="cordova.js"></script> 
+        <script type="text/javascript" src="cordova.js"></script> 
         <script src="lib/handlebars-v4.0.5.js"></script>
 		<script src="lib/jquery-1.11.1.min.js"></script>
 		
-		<script src="js/storage/memory-store.js"></script>
+		<script src="js/storage/ls-store.js"></script>
 		<script src="js/HomeView.js"></script>
 		<script src="js/O1View.js"></script>
+		<script src="js/ProfildatenView.js"></script>
+		<script src="js/UnpunktlichView.js"></script>
 		<script src="js/main.js"></script>
 		
 	    <script src="js/app.js"></script> 		

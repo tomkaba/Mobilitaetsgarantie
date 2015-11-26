@@ -1,6 +1,6 @@
 var angapp = angular.module('todo', ['ionic','ngCordova'])
 
-.controller('TodoCtrl', function($scope,$ionicSideMenuDelegate) {
+.controller('TodoCtrl', function($scope,$ionicSideMenuDelegate,$ionicPopup) {
   $scope.toggleMenu = function() {
     $ionicSideMenuDelegate.toggleLeft();
   };
@@ -9,6 +9,7 @@ var angapp = angular.module('todo', ['ionic','ngCordova'])
     $location.path( path );
 	alert(path);
   };
+  
 })
 
 .run(function($ionicPlatform, $ionicPopup) {
@@ -16,8 +17,8 @@ var angapp = angular.module('todo', ['ionic','ngCordova'])
   $ionicPlatform.registerBackButtonAction(function(event) {
     if (true) { // your check here
       $ionicPopup.confirm({
-        title: 'QUIT',
-        template: 'are you sure you want to exit?'
+        title: 'Beenden',
+        template: 'Möchten Sie das Programm wirklich beenden?'
       }).then(function(res) {
         if (res) {
           ionic.Platform.exitApp();
@@ -26,6 +27,8 @@ var angapp = angular.module('todo', ['ionic','ngCordova'])
     }
   }, 100);
 });
+
+
 
 
 var overlayElement = null;

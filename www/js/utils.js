@@ -50,6 +50,14 @@ function enable(id) {
 	}
 }
 
+function set_topbar_title(title) {
+	$("#topbartitle").html(title);
+}
+
+function reset_topbar_title() {
+	set_topbar_title('Schlichtungsstelle Nahverkehr');
+}
+
 function set_description(description)
 {
 	$("#description").html(description);
@@ -106,13 +114,14 @@ function hidePopUpMessage() {
 }
 
 function o1d1n() {
-		var description="Es reicht aus, dass eine Verspätung von mindestens zwanzig Minuten oder ein Ausfall angekündigt ist. Sie müssen die zwanzig Minuten nicht abwarten.";
+		var description="Nach der Mobilitätsgarantie gibt es einen Erstattungsanspruch ab einer Verspätung bei der Abfahrt von 20 Minuten Ist die Verspätung kürzer als 20 Minuten, haben Sie keinen Erstattungsanspruch. Melden Sie uns die Verspätung trotzdem!";
 		css_click("#button_nein","#3cb0fd");	
 		css_unclick("#button_ja");	
 		disable("#button_next");
-		show("#dialog_ja_nein");
+		//show("#dialog_ja_nein");
 		set_description(description);
 		show("#dialog_description");
+		show('#unpunktlichbutton'); 
 }
 
 function o1d1y() {
@@ -130,9 +139,10 @@ function o1d2n() {
 		css_click("#button_nein","#3cb0fd");	
 		css_unclick("#button_ja");	
 		disable("#button_next");
-		show("#dialog_ja_nein");
+		//show("#dialog_ja_nein");
 		set_description(description);
 		show("#dialog_description");
+		show('#unpunktlichbutton'); 
 }
 
 function o1d2y() {
@@ -140,7 +150,7 @@ function o1d2y() {
 		css_click("#button_ja","#3cb0fd");	
 		css_unclick("#button_nein");
 		enable("#button_next");
-		show("#dialog_ja_nein");	
+		//show("#dialog_ja_nein");	
 		set_description(description);
 		show("#dialog_description");
 }
@@ -159,9 +169,10 @@ function o1d3Bn() {
 		css_click("#button_nein2","#3cb0fd");	
 		css_unclick("#button_ja2");	
 		enable("#button_next");
-		show("#dialog_ja_nein");
+		//show("#dialog_ja_nein");
 		set_description(description);
 		show("#dialog_description");
+		
 }
 
 function o1d3By() {
@@ -169,9 +180,10 @@ function o1d3By() {
 		css_click("#button_ja2","#3cb0fd");	
 		css_unclick("#button_nein2");
 		disable("#button_next");
-		show("#dialog_ja_nein");	
+		//show("#dialog_ja_nein");	
 		set_description(description);
 		show("#dialog_description");
+		show('#unpunktlichbutton'); 
 }
 
 function o1d4n() {
@@ -179,7 +191,7 @@ function o1d4n() {
 		css_click("#button_nein","#3cb0fd");	
 		css_unclick("#button_ja");	
 		enable("#button_next");
-		show("#dialog_ja_nein");
+		//show("#dialog_ja_nein");
 		set_description(description);
 		show("#dialog_description");
 }
@@ -189,17 +201,18 @@ function o1d4y() {
 		css_click("#button_ja","#3cb0fd");	
 		css_unclick("#button_nein");
 		disable("#button_next");
-		show("#dialog_ja_nein");	
+		//show("#dialog_ja_nein");	
 		set_description(description);
 		show("#dialog_description");
+		show('#unpunktlichbutton'); 
 }
 
 function o1d5y() {
-		var description="Die Kosten für das Fernverkehrsticket zum Reiseziel Schlichtungsstelle Nahverkehr Lastenheft für die App zur Mobilitätsgarantie können nach der Mobilitätsgarantie inklusive des Bordpreises voll erstattet werden";
+		var description="Sie müssen ein Ticket für den Fernverkehrszug kaufen. Der Preis wird inklusive Bordpreis voll erstattet. <br/>Sie dürfen zwischen Taxi und Fernverkehrszug frei wählen, wenn an Ihrer Haltestelle beides möglich ist. ";
 		css_click("#button_ja","#3cb0fd");	
 		css_unclick("#button_nein");
 		enable("#button_next");
-		show("#dialog_ja_nein");	
+		//show("#dialog_ja_nein");	
 		set_description(description);
 		show("#dialog_description");
 		$("#weiterbutton").attr("href","#o1/7");
@@ -207,32 +220,43 @@ function o1d5y() {
 }
 
 function o1d6y() {
-		var description="";
+		var description="Verspätung tagsüber (05:00 bis 20:00 Uhr)?";
 		css_click("#button_ja","#3cb0fd");	
 		css_unclick("#button_nein");
+		$("#d6subquestion").css('height','60px');
+		$("#d6subquestion").css('font-size','17px');
+		$("#d6subquestion").css('text-align','center');
+		$("#d6subquestion").html(description);
 		set_description(description);	
 		show("#d6subquestion");
 		show("#d6subquestion_janein");
+		hide('#unpunktlichbutton'); 
 }
 
 function o1d6n() {
-		var description="Kein Anspruch, da es bei der Mobilitätsgarantie nur um die Erstattung tatsächlich entstandener Kosten für die Weiterreise geht und nicht um eine Kompensation für Verspätungen / Wartezeit";
+		var description="Sie haben keinen Anspruch aufgrund der Verspätung, da es bei der Mobilitätsgarantie nur um die Erstattung tatsächlich entstandener Kosten für die Weiterreise geht und nicht um eine Kompensation für Verspätungen/Wartezeit. In Ihrem Fall kommt vielleicht eine Entschädigung nach dem Fahrgastrechtegesetz in Betracht, wenn Ihre Verspätung sich am Zielbahnhof auf mehr als 60 Minuten beläuft. Weitere Informationen dazu finden Sie unter <a href=\"#\" onclick=\"window.open('http://www.example.org', '_system'); return false;\">www.example.org</a>.";
 		css_click("#button_nein","#3cb0fd");	
 		css_unclick("#button_ja");
 		disable("#button_next");
-		hide("#d6subquestion");
+		hide("#dialog_description");
 		hide("#d6subquestion_janein");
-		show("#dialog_ja_nein");	
-		set_description(description);
-		show("#dialog_description");
+	    $("#d6subquestion").css('height','220px');
+		$("#d6subquestion").css('font-size','13px');
+		$("#d6subquestion").css('text-align','left');
+		$("#d6subquestion").html(description);
+		//show("#dialog_ja_nein");	
+		//set_description(description);
+		//show("#dialog_description);
+		show('#d6subquestion');
+		show('#unpunktlichbutton'); 
 }
 
 function o1d6Bn() {
-		var description="Bei einer Verspätung zwischen 20:00 Uhr und 05:00 Uhr können nach der Mobilitätsgarantie die Kosten für das Taxi bis zu <b>50,- € pro Person</b> erstattet werden";
+		var description="Bei einer Verspätung zwischen 20:00 Uhr und 05:00 Uhr können nach der Mobilitätsgarantie die Kosten für das Taxi bis zu <b>50,- € pro Person</b> erstattet werden. Mehr...";
 		css_click("#button_nein2","#3cb0fd");	
 		css_unclick("#button_ja2");	
 		enable("#button_next");
-		show("#dialog_ja_nein");
+		//show("#dialog_ja_nein");
 		set_description(description);
 		show("#dialog_description");
 		$("#weiterbutton").attr("href","#o1/7");
@@ -240,11 +264,11 @@ function o1d6Bn() {
 }
 
 function o1d6By() {
-		var description="Bei einer Verspätung zwischen 05:00 Uhr und 20:00 Uhr können nach der Mobilitätsgarantie die Kosten für das Taxi bis zu <b>25,- € pro Person</b> erstattet werden";
+		var description="Bei einer Verspätung zwischen 05:00 Uhr und 20:00 Uhr können nach der Mobilitätsgarantie die Kosten für das Taxi bis zu <b>25,- € pro Person</b> erstattet werden. Mehr...";
 		css_click("#button_ja2","#3cb0fd");	
 		css_unclick("#button_nein2");
 		enable("#button_next");
-		show("#dialog_ja_nein");	
+		//show("#dialog_ja_nein");	
 		set_description(description);
 		show("#dialog_description");
 		$("#weiterbutton").attr("href","#o1/7");
