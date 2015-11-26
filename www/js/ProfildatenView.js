@@ -51,10 +51,10 @@ function submitProfildaten() {
     //
     if (navigator.notification) {
 	    navigator.notification.confirm(
-            'Möchten Sie zurück zum Hauptmenü?',  // message
+            'MÃ¶chten Sie zurÃ¼ck zum HauptmenÃ¼?',  // message
             onConfirm,              // callback to invoke with index of button pressed
             'Personliche daten saved',            // title
-            'Nein,Hauptmenü'          // buttonLabels
+            'Nein,HauptmenÃ¼'          // buttonLabels
         );
    	} else {
 			var r=confirm('Saved. Go back to main menu?');
